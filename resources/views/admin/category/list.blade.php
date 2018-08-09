@@ -25,8 +25,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @if( is_array($categories) )
+                    @if( is_object($categories) )
                         @foreach($categories as $category)
+                            @if( $category->admin_id == $rootId)
                         <tr>
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->name }}</td>
@@ -45,8 +46,9 @@
                                 </a>
                             </td>
                         </tr>
-                    @endforeach
-                        @endif
+                            @endif
+                        @endforeach
+                     @endif
                     </tbody>
                 </table>
             </div>

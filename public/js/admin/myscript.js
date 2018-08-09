@@ -162,24 +162,24 @@ function checkDescription( descr ) {
 /**
  * открытие и закрытие меню в сайдбаре
  */
-$(document).ready(function () {
-    $('#li_cat').on('click', function () {
-        var openMenu = 'open';
-        var closeMenu = 'close';
-
-        menu = $('#dropdown_child').css('display');
-
-        if( menu == 'none' ) {
-            $('#dropdown_child').css('display', 'block');
-            $('#dropdown_child').addClass(openMenu);
-        } else {
-            $('#dropdown_child').css('display', 'none');
-            $('#dropdown_child').removeClass(closeMenu);
-        }
-        return false;
-    });
-
-});
+// $(document).ready(function () {
+//     $('#li_cat').on('click', function () {
+//         var openMenu = 'open';
+//         var closeMenu = 'close';
+//
+//         menu = $('#dropdown_child').css('display');
+//
+//         if( menu == 'none' ) {
+//             $('#dropdown_child').css('display', 'block');
+//             $('#dropdown_child').addClass(openMenu);
+//         } else {
+//             $('#dropdown_child').css('display', 'none');
+//             $('#dropdown_child').removeClass(closeMenu);
+//         }
+//         return false;
+//     });
+//
+// });
 
 //
 //

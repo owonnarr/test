@@ -23,13 +23,13 @@
                     </a>
                 </li>
                         {{--{{dd($aData)}}--}}
-                        @if(!empty($aData['childs']) && $aData['rootId'] == $category->id)
-                            <ul class="drop_menu_sidebar" id="dropdown_child">
-                                @foreach( $aData['childs'] as $child)
-                                    <li>{{ $child->name }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
+                        {{--@if(!empty($aData['childs']) && $aData['rootId'] == $category->id)--}}
+                            {{--<ul class="drop_menu_sidebar" id="dropdown_child">--}}
+                                {{--@foreach( $aData['childs'] as $child)--}}
+                                    {{--<li>{{ $child->name }}</li>--}}
+                                {{--@endforeach--}}
+                            {{--</ul>--}}
+                        {{--@endif--}}
                 @endforeach
     </ul>
 </div>

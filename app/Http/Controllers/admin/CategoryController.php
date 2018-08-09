@@ -19,12 +19,13 @@ class CategoryController extends Controller
      * вывод списка категорий
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show()
+    public function show(string $category)
     {
-        $aCats = Category::getCategoryList();
+        $aCats = $this->getChildCats($category);
 
             return view('admin.category.list', [
-                'categories' => $aCats,
+                'categories' => $aCats['childs'],
+                'rootId' => $aCats['rootId'],
             ]);
     }
     /**
@@ -41,7 +42,7 @@ class CategoryController extends Controller
             $aRules =  [
                 'name' => 'min:4|max:20',
                 'description' => 'min:20|max:200',
-                'admin_id' => 'requaired',
+//                'admin_id' => 'requaired',
             ];
 
             # делаем валидацию данных
@@ -161,16 +162,17 @@ class CategoryController extends Controller
     public function getChildCats($rootName = false)
     {
         if ($rootName !== false) {
+
             $root = new Admin();
             $rootId = $root->getRootIdCategory($rootName);
 
-            $aData = [];
-
             if ( $rootId ) {
-                $aData['childs'] = Admin::getChildCategories($rootId);
-                $aData['rootId'] = $rootId;
-//                dd($aData);
-               return view('layouts.admin-layouts')->with('aData', $aData);
+                $childs = Admin::getChildCategories($rootId);
+
+               return [
+                   'childs' => $childs,
+                   'rootId' => $rootId,
+               ];
             }
         }
     }

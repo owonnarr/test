@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\DbTablesHelper;
+use App\Helpers\ErrorHelper;
 
 class Admin extends Model
 {
@@ -17,7 +18,7 @@ class Admin extends Model
      */
     public static function getAdminCategories()
     {
-        $nameTable = DbTablesHelper::ADMIN_CATEGORIES;
+        $nameTable = ErrorHelper::ADMIN_CATEGORIES;
 
         $aCats= DB::table($nameTable)->where('active', 'true')->get();
 
@@ -54,7 +55,8 @@ class Admin extends Model
         $nameTable = DbTablesHelper::ADMIN_CATEGORIES;
 
         $rootId = DB::table($nameTable)->where('url', $name)->pluck('id')->toArray();
-        $nRootId = intval($rootId);
+
+        $nRootId = $rootId[0];
 
         return $nRootId;
     }

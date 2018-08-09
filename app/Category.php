@@ -6,6 +6,7 @@ use GuzzleHttp\Psr7\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\DbTablesHelper;
+use App\Helpers\ErrorHelper;
 
 class Category extends Model
 {
@@ -31,7 +32,7 @@ class Category extends Model
         if ($aCategories) {
             return $aCategories;
         } else {
-            return DbTablesHelper::NO_CATEGORIES;
+            return ErrorHelper::NO_CATEGORIES;
         }
 
     }
