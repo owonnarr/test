@@ -18,7 +18,7 @@ class Admin extends Model
      */
     public static function getAdminCategories()
     {
-        $nameTable = ErrorHelper::ADMIN_CATEGORIES;
+        $nameTable = DbTablesHelper::ADMIN_CATEGORIES;
 
         $aCats= DB::table($nameTable)->where('active', 'true')->get();
 
