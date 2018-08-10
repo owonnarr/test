@@ -144,17 +144,18 @@ class CategoryController extends Controller
             $oCategory = BaseHelper::getAdminIdCategory($id);
             $sNameRootCat = BaseHelper::getNameCatAdminFromRedirect($oCategory->admin_id);
 
-            # получаем данные запроса
-            $aData = $request->all();
             # составляем правила для валидации
             $aRules =  [
                 'name' => 'min:4|max:20',
                 'description' => 'min:20|max:200',
-                'admin_id' => 'requaired',
+                'admin_id' => 'integer',
             ];
             # осуществляем валидацию
             $this->validate($request, $aRules);
+            # получаем все данные запроса
+            $aData = $request->all();
             # обновляем данные категории
+
             $oCategory->update($aData);
 
             return redirect( "admin/$sNameRootCat" );

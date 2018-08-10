@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-10">
-                    <select name="parent_id" class="form-control selectpicker">
+                    <select name="admin_id" class="form-control selectpicker">
                         <option selected>выбрать категорию</option>
                         @if($cats)
                             @foreach($cats as $cat)
