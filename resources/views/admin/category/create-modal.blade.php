@@ -29,15 +29,15 @@
                                         <option>выбрать категорию</option>
                                         @if($cats)
                                             @foreach($cats as $cat)
-                                                <option id="option_id_form" <?php if ($cat->id == 'value="$cat->id"') {echo "selected"; }?> data-id="{{ $cat->id }}" title="{{ $cat->name }}">{{ $cat->name }}</option>
+                                                <option id="option_id_form" <?php if ($cat->id == 'value="$cat->id"') {echo "selected"; }?> data-id="{{ $cat->id }}" value="{{ $cat->id }}">{{ $cat->name }}</option>
                                             @endforeach
                                                 <p class="bg-danger danger_option"></p>
                                                 @if ($errors->has('parent_id'))
                                                     <span class="help-block">
-                    <strong class="text-danger">
-                    {{ $errors->first('parent_id') }}
-                    </strong>
-                        </span>
+                                                    <strong class="text-danger">
+                                                    {{ $errors->first('parent_id') }}
+                                                    </strong>
+                                                        </span>
                                                 @endif
                                         @endif
                                     </select>

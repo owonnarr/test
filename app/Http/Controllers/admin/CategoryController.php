@@ -34,7 +34,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
 
-    public function add (Request $request)
+    public function add(Request $request)
     {
         if ( $request->isMethod('post') ) {
 
@@ -42,11 +42,10 @@ class CategoryController extends Controller
             $aRules =  [
                 'name' => 'min:4|max:20',
                 'description' => 'min:20|max:200',
-//                'admin_id' => 'requaired',
             ];
 
             # делаем валидацию данных
-            $this->validate($request, $aRules);
+            dd($this->validate($request, $aRules));
 
             # получаем данные запроса
             $aData = $request->all();
@@ -87,7 +86,7 @@ class CategoryController extends Controller
      * @throws \Exception
      */
 
-    public function delete (Category $id)
+    public function delete(Category $id)
     {
 //            $path = public_path(DbTablesHelper::PATH_IMAGE_CATEGORY);
 

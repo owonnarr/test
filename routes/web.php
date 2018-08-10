@@ -24,11 +24,12 @@ Route::get('/admin', function () {
     return view('admin.layout-admin');
 })->name('home.admin');
 
+// admin-categories
 Route::get('admin/{categories}', 'admin\CategoryController@show')->name('admin.category');
-//Route::get('admin/{rootName}', 'admin\CategoryController@getChildCats')->name('child');
 Route::match( ['get', 'post'], 'admin/category/add', 'admin\CategoryController@add')->name('admin.category.add');
 Route::post('admin/category/delete/{id}', 'admin\CategoryController@delete')->name('admin.categories.delete');
 Route::match(['get', 'post'], 'admin/category/{id}/edit', 'admin\CategoryController@edit')->name('edit');
+
 
 
 

@@ -14,9 +14,7 @@ function  sendAjax( routeName, dataForm, method ) {
             'X-CSRF-TOKEN': $('input[name="_token"]').val()
         },
         data: dataForm,
-        beforeSend: function(){ // Функция вызывается перед отправкой запроса
-            output.text('Запрос отправлен. Ждите ответа.');
-        },
+
         success: function (response) {
             console.log(response, dataForm);
             alert('Категория ' + response.data.name + ' успешно добавлена');
@@ -31,48 +29,23 @@ function  sendAjax( routeName, dataForm, method ) {
     });
 }
 
-/**
- * Удаление данных через aJax
- * @param routeName - имя роута который обрабатывает запрос - string
- * @param dataForm - данные формы (без файлов) - object
- * @param method - метод запроса (get, post) - string
- * @param token - X-CSRF-TOKEN - string
- */
-// function deleteAjax( routeName, method, token ) {
-//
-// }
+
 $(document).ready(function () {
 
     $('#formAjax').on('submit', function () {
 
-        var strRes = $('input[name = name]').val();
-        var descrRes = $('textarea[name = description]').val();
-        idAdmin = $('#option_id_form').data('id');
-        id = optionIdChecked(idAdmin)
-        name = checkNameCategory(strRes);
-        descr = checkDescription(descrRes);
+        name = $('input[name = name]').val();
+        descr = $('textarea[name = description]').val();
+        id = $('#option_id_form:checked').data('id');
 
-        if ( name == 'error') {
-            $(this).off('submit');
-        }
-        if( descr == 'error' ) {
-            $(this).off('submit');
-        }
-        if( id == 'error' ) {
-            $(this).off('submit');
-        }
-        token = $('input[name="_token"]').attr('content');
-
-        if (name !== 'error' && descr !== 'error' && id !== 'error') {
             dataForm = {
                 name: name,
                 description: descr,
                 admin_id: id,
-                token: token,
             };
 
             sendAjax(routes.categoriesAdd, dataForm, 'POST');
-        }
+
         return false;
     });
 });
