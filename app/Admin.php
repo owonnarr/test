@@ -14,7 +14,7 @@ class Admin extends Model
 
     /**
      * получаем список доступных категорий в области контента
-     * @return collection|string
+     * @return bool|\Illuminate\Support\Collection
      */
     public static function getAdminCategories()
     {
@@ -25,18 +25,19 @@ class Admin extends Model
         if (!empty($aCats)) {
             return $aCats;
         } else {
-            return "Проблема выборки из бд, таблицы $nameTable";
+            return false;
         }
     }
 
     /**
+     * список дочерних категорий
      * @param $id - родительской категории
      * @return bool
      */
     public static function getChildCategories($id)
     {
         # получаем объект родительской категории
-        $oRootCat = Admin::find($id);
+        $oRootCat = Admin::where('id', $id)->first();
 
         if (!empty($oRootCat)) {
             return $oRootCat->category;

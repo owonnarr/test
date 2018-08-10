@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Admin;
+use App\Helpers\BaseHelper;
 use File;
 use Illuminate\View\View;
 use Intervention\Image\Facades\Image;
@@ -28,12 +29,12 @@ class CategoryController extends Controller
                 'rootId' => $aCats['rootId'],
             ]);
     }
+
     /**
      * Добавление категорий
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-
     public function add(Request $request)
     {
         if ( $request->isMethod('post') ) {
@@ -45,7 +46,7 @@ class CategoryController extends Controller
             ];
 
             # делаем валидацию данных
-            dd($this->validate($request, $aRules));
+            $this->validate($request, $aRules);
 
             # получаем данные запроса
             $aData = $request->all();
@@ -123,9 +124,14 @@ class CategoryController extends Controller
     public function edit(Request $request, $id)
     {
         if ($request->isMethod('GET')) {
-//
-            $oCat = Category::find($id);
+
+            $oCat = Category::where('id', $id)->first();
+
             $aCats = Admin::getAdminCategories();
+
+            if ($aCats == false) {
+                return 'Проблема выборки категорий из бд';
+            }
 
             return view('admin.category.edit', [
                     'category' => $oCat,
@@ -134,7 +140,10 @@ class CategoryController extends Controller
         }
 
         if ($request->isMethod('POST')) {
-            $oCategory = Category::find($id);
+
+            $oCategory = BaseHelper::getAdminIdCategory($id);
+            $sNameRootCat = BaseHelper::getNameCatAdminFromRedirect($oCategory->admin_id);
+
             # получаем данные запроса
             $aData = $request->all();
             # составляем правила для валидации
@@ -148,10 +157,8 @@ class CategoryController extends Controller
             # обновляем данные категории
             $oCategory->update($aData);
 
-            return redirect(route('admin.category'));
+            return redirect( "admin/$sNameRootCat" );
         }
-
-
     }
 
     /**
