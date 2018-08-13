@@ -37,12 +37,12 @@
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
                             </td>
-                            <td>
-                                <a data-id="{{ $category->id }}" data-name='{{ $category->name }}' class="data_id" class="delete_cat"  title="удалить"  href="{{ route('admin.categories.delete', $category->id) }}">
+                            <td id="del">
+                                <a id="delete" data-id="{{ $category->id }}" data-name='{{ $category->name }}' class="data_id" class="delete_cat"  title="удалить"  href="{{ route('admin.categories.delete', $category->id) }}">
                                     <form action="{{ route('admin.categories.delete', $category->id) }}" method="POST" style="display: none;">
                                         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                                     </form>
-                                    <i class=" fa fa-times" aria-hidden="true"></i>
+                                    <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
                             </td>
                         </tr>

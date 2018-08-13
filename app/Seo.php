@@ -9,6 +9,7 @@ use App\Helpers\DbTablesHelper;
 class Seo extends Model
 {
     public $timestamps = false;
+    protected $table ='seo';
 
     protected $fillable = [
         'route_name',

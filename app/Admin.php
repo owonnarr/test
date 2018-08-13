@@ -63,24 +63,6 @@ class Admin extends Model
     }
 
     /**
-     * иконки для меню в сайдбаре админ панели
-     * @return array
-     */
-    public static function getIcon()
-    {
-        return [
-            '0' => 'fa fa-th-list',
-            '1' => 'fa fa-users',
-            '2' => 'fa fa-files-o',
-            '3' => 'fa fa-commenting-o',
-            '4' => 'fa fa-bullseye',
-            '5' => 'fa fa-rss',
-            '6' => 'fa fa-bar-chart',
-            '7' => 'fa fa-cogs',
-        ];
-    }
-
-    /**
      * отношение один ко многим (у одной категории может быть много дочерних категорий)
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

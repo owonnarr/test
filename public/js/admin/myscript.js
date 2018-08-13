@@ -19,13 +19,13 @@ function  sendAjax( routeName, dataForm, method ) {
 
             alert('Категория ' + response.data.name + ' успешно добавлена');
             $('#myModal').modal('hide');
-            console.log(response.data);
-            drawTrTableAjax(response.data.admin_id, response.data.name, response.data.description);
+
+            drawTrTableAjax(response.id, response.data.name, response.data.description);
 
         },
 
         error: function (error) {
-            alert( error.status +' Ошибка' )
+            alert( error.status +' Ошибка' );
         }
     });
 }
@@ -64,6 +64,10 @@ $(document).ready(function () {
                 data: {id: id, "_token": $('#token').val()},
                 success: function(response) {
                     alert(response.message);
+
+                },
+                error: function (error) {
+                    alert( error.status +' Ошибка' );
                 }
             });
         }
@@ -229,3 +233,9 @@ $(function () {
         }
     })
 });
+deleteItem();
+function deleteItem() {
+    $('#delete').click( function () {
+        var item = $('#del').remove();
+    })
+}

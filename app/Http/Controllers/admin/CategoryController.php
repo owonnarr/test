@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Helpers\DbTablesHelper;
+use App\Helpers\ErrorHelper;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
@@ -12,6 +13,7 @@ use File;
 use Illuminate\View\View;
 use Intervention\Image\Facades\Image;
 use function PHPSTORM_META\type;
+use Psy\Exception\ErrorException;
 use Symfony\Component\HttpKernel\DataCollector\AjaxDataCollector;
 
 class CategoryController extends Controller
@@ -43,11 +45,11 @@ class CategoryController extends Controller
             $aRules =  [
                 'name' => 'min:4|max:20',
                 'description' => 'min:20|max:200',
+                'admin_id' => 'integer'
             ];
 
             # делаем валидацию данных
             $this->validate($request, $aRules);
-
             # получаем данные запроса
             $aData = $request->all();
             # работа с изображениями
@@ -68,14 +70,21 @@ class CategoryController extends Controller
 //
 //                $aData['image'] = $fileName;
 //            }
+            $result = Category::create($aData);
 
+            if ($result) {
+                # получаем последний id
+                $id = $result->id;
+                # формируем ответ
                 $aResponseData = [
                     'success' => true,
                     'data' => $aData,
+                    'id' => $id
                 ];
-                Category::create($aData);
-
                 return response()->json($aResponseData);
+            } else {
+                return "При добавлении записи произошла ошибка";
+            }
         }
     }
 
@@ -110,7 +119,7 @@ class CategoryController extends Controller
                 return response()->json($aResponse);
 
             } else {
-                echo DbTablesHelper::NOT_ID_CATEGORY;
+                echo ErrorHelper::NOT_ID_CATEGORY;
             }
     }
 
@@ -126,7 +135,6 @@ class CategoryController extends Controller
         if ($request->isMethod('GET')) {
 
             $oCat = Category::where('id', $id)->first();
-
             $aCats = Admin::getAdminCategories();
 
             if ($aCats == false) {
@@ -154,11 +162,13 @@ class CategoryController extends Controller
             $this->validate($request, $aRules);
             # получаем все данные запроса
             $aData = $request->all();
+
             # обновляем данные категории
-
-            $oCategory->update($aData);
-
-            return redirect( "admin/$sNameRootCat" );
+            if ($oCategory->save($aData)) {
+                return redirect( "admin/$sNameRootCat" );
+            } else {
+                return "Произошла ошибка при обновлении";
+            }
         }
     }
 
