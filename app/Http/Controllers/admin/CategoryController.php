@@ -141,7 +141,7 @@ class CategoryController extends Controller
 
         if ($request->isMethod('POST')) {
 
-            $oCategory = BaseHelper::getAdminIdCategory($id);
+            $oCategory = BaseHelper::getObjCurentAdminCategory($id);
             $sNameRootCat = BaseHelper::getNameCatAdminFromRedirect($oCategory->admin_id);
 
             # составляем правила для валидации

@@ -24,7 +24,7 @@
                         <th>Удалить</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tb_table">
                     @if( is_object($categories) )
                         @foreach($categories as $category)
                             @if( $category->admin_id == $rootId)

@@ -16,10 +16,11 @@ function  sendAjax( routeName, dataForm, method ) {
         data: dataForm,
 
         success: function (response) {
-            console.log(response, dataForm);
+
             alert('Категория ' + response.data.name + ' успешно добавлена');
             $('#myModal').modal('hide');
-            drawTrTableAjax(dataForm.id, dataForm.name, dataForm.descr);
+            console.log(response.data);
+            drawTrTableAjax(response.data.admin_id, response.data.name, response.data.description);
 
         },
 
@@ -174,18 +175,26 @@ function checkDescription( descr ) {
 
 
 function drawTrTableAjax( id, name, description ) {
-    ide = id;
-    $('#table_cats, tbody:last').append(
-        '<tr> ' +
-            '<td> +ide+ </td>' +
-            '<td> name  </td>' +
-            '<td>+ description +</td> ' +
-            '<td>' +
-                '<a title="редактировать" href="/admin/category/{{$category->id}}/edit">' +
-                '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>' +
-                '</a>' +
-            '</td> ' +
-            '<td></td> ' + '</tr>')
+    console.log(id)
+    $('#tb_table').append(
+        "<tr>" +
+            "<td>" + id + "</td>" +
+            "<td>" + name + "</td>" +
+            "<td>" + description + "</td>" +
+            "<td>" +
+                "<a title='редактировать' href='/admin/category/{{$category->id}}/edit'>"+
+                "<i class='fa fa-pencil-square-o' aria-hidden='true'></i>" +
+                "</a>" +
+            "</td>" +
+            "<td>" +
+                "<a data-id='{{ $category->id }}' data-name='{{ $category->name }}' class='data_id' class='delete_cat'  title='удалить' href='{{ route(admin.categories.delete, $category->id) }}'>" +
+                    "<form action='{{ route(admin.categories.delete, $category->id) }}' method='POST' style='display: none;'>" +
+                    "<input type='hidden' name='_token' id='token' value='{{ csrf_token() }}'>" +
+                    "</form>" +
+                    "<i class='fa fa-times' aria-hidden='true'></i>" +
+                "</a>" +
+            "</td>" +
+        "</tr>");
 };
 
 $(function () {

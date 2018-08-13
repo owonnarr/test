@@ -12,10 +12,9 @@
 <!-- sidebar menu: : style can be found in sidebar.less -->
 <div style="width: 100%" class="btn-group-vertical">
     <ul id="adminUl" class="ul_block_left">
-                <?php $i = 0; ?>
                 @foreach($cats as $category)
                 <li class="li_block_left tree-toggler nav-header">
-                    <i style="color: white;" class="{{ $icon[$i++] }}" aria-hidden="true"></i>
+                    <i style="color: white;" class="{{ $category->icon }}" aria-hidden="true"></i>
                     <span class=""></span>
                     {{--{{dd($child)}}--}}
                     <a data-id="{{ $category->id }}" id="li_cat" class="a_block_left" href="/admin/{{ $category->url }}">

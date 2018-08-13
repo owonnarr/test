@@ -18,6 +18,7 @@ class CreateAdminsTable extends Migration
             $table->string('name');
             $table->string('active')->default('true');
             $table->string('url');
+            $table->string('icon')->default('fa fa-folder-o');
             $table->timestamps();
         });
     }

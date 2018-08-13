@@ -30,8 +30,6 @@ class CategoryComposer
 //        $child = $aChildCats->getChildCats();
 
         $view->with('cats', Admin::getAdminCategories());
-        $view->with('icon', Admin::getIcon());
-//        $view->with('childs', $child);
 
     }
 

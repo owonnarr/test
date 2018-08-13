@@ -13,6 +13,11 @@ use App\Category;
 
 class BaseHelper
 {
+    /**
+     * получаем название категории для обратного редиректа
+     * @param int $id
+     * @return bool
+     */
     public static function getNameCatAdminFromRedirect(int $id)
     {
         $oRootCat = Admin::where('id', $id)->first();
@@ -25,8 +30,12 @@ class BaseHelper
         }
     }
 
-
-    public static function getAdminIdCategory(int $id)
+    /**
+     * получаем объект текущей категории
+     * @param int $id
+     * @return bool
+     */
+    public static function getObjCurentAdminCategory(int $id)
     {
         $oCategory = Category::where('id', $id)->first();
 
