@@ -28,7 +28,7 @@
                     @if( is_object($categories) )
                         @foreach($categories as $category)
                             @if( $category->admin_id == $rootId)
-                        <tr>
+                        <tr class="remove_tr">
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->description }}</td>
@@ -37,8 +37,8 @@
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
                             </td>
-                            <td id="del">
-                                <a id="delete" data-id="{{ $category->id }}" data-name='{{ $category->name }}' class="data_id" class="delete_cat"  title="удалить"  href="{{ route('admin.categories.delete', $category->id) }}">
+                            <td>
+                                <a data-id="{{ $category->id }}" data-name='{{ $category->name }}' class="data_id delete_cat"   title="удалить"  href="{{ route('admin.categories.delete', $category->id) }}">
                                     <form action="{{ route('admin.categories.delete', $category->id) }}" method="POST" style="display: none;">
                                         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                                     </form>

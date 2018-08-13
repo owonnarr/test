@@ -42,7 +42,7 @@ $(document).ready(function () {
             dataForm = {
                 name: name,
                 description: descr,
-                admin_id: id,
+                admin_id: id
             };
 
             sendAjax(routes.categoriesAdd, dataForm, 'POST');
@@ -53,16 +53,25 @@ $(document).ready(function () {
 
 // # Удаление категории AJAX
 $(document).ready(function () {
+
     $('.data_id').on('click', function() {
+        var tr = $(this).parents('tr');
         var id = $(this).data('id');
         var catName = $(this).data('name');
+        var token = $('#token').val();
 
-        if(confirm('Вы точно хотите удалить категорию '+ catName)) {
+        if( confirm('Вы точно хотите удалить категорию '+ catName) ) {
+            tr.css({'background-color': '#ffcccc'});
             $.ajax({
                 url: 'category/delete/' + id,
                 type: "POST",
-                data: {id: id, "_token": $('#token').val()},
+                data: {
+                    id: id,
+                    "_token": token
+                },
                 success: function(response) {
+
+                    tr.remove('.remove_tr');
                     alert(response.message);
 
                 },
@@ -71,7 +80,6 @@ $(document).ready(function () {
                 }
             });
         }
-
         return false;
     });
 
@@ -82,36 +90,36 @@ $(document).ready(function () {
  * @param name
  * @returns {*}
  */
-function checkNameCategory( name ) {
-
-    var str = name.trim();
-
-    if ( str.length < 4 ) {
-        $('#inputCatName, .danger_name').append('Имя категории должно содержать минимум 4 буквы');
-        return 'error';
-    } else if( str.length > 20 ) {
-        $('#inputCatName, .danger_name').append('Имя категории не должно содержать больше 20 букв');
-        return 'error';
-    }
-    return name;
-
-}
+// function checkNameCategory( name ) {
+//
+//     var str = name.trim();
+//
+//     if ( str.length < 4 ) {
+//         $('#inputCatName, .danger_name').append('Имя категории должно содержать минимум 4 буквы');
+//         return 'error';
+//     } else if( str.length > 20 ) {
+//         $('#inputCatName, .danger_name').append('Имя категории не должно содержать больше 20 букв');
+//         return 'error';
+//     }
+//     return name;
+//
+// }
 
 /**
  * проверка правильности ввода описания категории
  * @param descr
  * @returns {*}
  */
-function checkDescription( descr ) {
-    if ( descr.length < 20 ) {
-        $('#err_descr, .danger_descr').append('Описание категории должно содержать минимум 20 букв');
-        return 'error';
-    } else if( descr.length > 200 ) {
-        $('#err_descr, .danger_descr').append('Описание категории не должно содержать больше 200 букв');
-        return 'error';
-    }
-    return descr;
-}
+// function checkDescription( descr ) {
+//     if ( descr.length < 20 ) {
+//         $('#err_descr, .danger_descr').append('Описание категории должно содержать минимум 20 букв');
+//         return 'error';
+//     } else if( descr.length > 200 ) {
+//         $('#err_descr, .danger_descr').append('Описание категории не должно содержать больше 200 букв');
+//         return 'error';
+//     }
+//     return descr;
+// }
 
 // # аякс метод работы с категориями
 // $(document).ready(function () {
@@ -179,7 +187,7 @@ function checkDescription( descr ) {
 
 
 function drawTrTableAjax( id, name, description ) {
-    console.log(id)
+
     $('#tb_table').append(
         "<tr>" +
             "<td>" + id + "</td>" +
@@ -192,14 +200,14 @@ function drawTrTableAjax( id, name, description ) {
             "</td>" +
             "<td>" +
                 "<a data-id='{{ $category->id }}' data-name='{{ $category->name }}' class='data_id' class='delete_cat'  title='удалить' href='{{ route(admin.categories.delete, $category->id) }}'>" +
-                    "<form action='{{ route(admin.categories.delete, $category->id) }}' method='POST' style='display: none;'>" +
+                    "<form action='{{ route(admin.categories.delete, $category->id) }}' method='POST' style='display:none;'>" +
                     "<input type='hidden' name='_token' id='token' value='{{ csrf_token() }}'>" +
                     "</form>" +
                     "<i class='fa fa-times' aria-hidden='true'></i>" +
                 "</a>" +
             "</td>" +
         "</tr>");
-};
+}
 
 $(function () {
 
@@ -208,7 +216,7 @@ $(function () {
             name: {
                 required: true,
                 minlength: 4,
-                maxlength: 20,
+                maxlength: 20
             },
             description: {
                 required: true,
@@ -216,14 +224,14 @@ $(function () {
                 maxlength: 200
             }
         }
-    })
+    });
 
     $('#editForm').validate({
         rules: {
             name: {
                 required: true,
                 minlength: 4,
-                maxlength: 20,
+                maxlength: 20
             },
             description: {
                 required: true,
@@ -233,9 +241,3 @@ $(function () {
         }
     })
 });
-deleteItem();
-function deleteItem() {
-    $('#delete').click( function () {
-        var item = $('#del').remove();
-    })
-}
