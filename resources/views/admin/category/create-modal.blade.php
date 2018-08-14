@@ -12,9 +12,12 @@
                             <div class="form-group">
                                 <label class="label_form_add" for="inputCatName">Название категории</label>
                                 <input type="text" name="name" class="form-control" id="inputCatName" placeholder="имя категории" value="" required>
-
                             </div>
-                            <p class="bg-danger danger_name"></p>
+                            <div class="form-group">
+                                <label class="label_form_add" for="inputCatName">Постоянная ссылка</label>
+                                <input type="text" name="url" class="form-control" id="link" value="" disabled>
+                            </div>
+
 
                             <div class="form-group">
                                 <label class="label_form_add" for="inputCatDescription">Краткое описание</label>
@@ -43,11 +46,10 @@
                                     </select>
                                 </div>
                             </div>
-
                             <button data-loading-text="Loading..." id="res" type="submit" class="btn btn-success">ДОБАВИТЬ ДАННЫЕ</button>
-                            {{--{{ csrf_field() }}--}}
+                            <button data-loading-text="Loading..." class="btn btn-danger">ОТМЕНА</button>
                         </form>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

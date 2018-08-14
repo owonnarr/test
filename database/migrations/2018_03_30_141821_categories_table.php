@@ -19,6 +19,7 @@ class CategoriesTable extends Migration
             $table->string('description');
             $table->integer('admin_id')->default(0);
             $table->string('active')->default('true');
+            $table->string('url');
             $table->timestamps();
         });
     }

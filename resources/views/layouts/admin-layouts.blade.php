@@ -59,7 +59,8 @@
 <script src="{{asset('js/admin/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/admin/jquery.validate.min.js')}}"></script>
 <script src="{{asset('js/admin/myscript.js')}}"></script>
-{{--<script src="{{asset('js/admin/main.js')}}"></script>--}}
+<script src="{{asset('js/admin/speakingurl.js')}}"></script>
+<script src="{{asset('js/admin/jquery-slugify.js')}}"></script>
 
 </body>
 </html>

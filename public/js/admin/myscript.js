@@ -209,6 +209,9 @@ function drawTrTableAjax( id, name, description ) {
         "</tr>");
 }
 
+/**
+ * Валидация данных
+ */
 $(function () {
 
     $('#formAjax').validate({
@@ -241,3 +244,4 @@ $(function () {
         }
     })
 });
+

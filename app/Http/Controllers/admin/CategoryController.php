@@ -157,14 +157,14 @@ class CategoryController extends Controller
                 'name' => 'min:4|max:20',
                 'description' => 'min:20|max:200',
                 'admin_id' => 'integer',
+                'url' => 'string'
             ];
             # осуществляем валидацию
             $this->validate($request, $aRules);
             # получаем все данные запроса
             $aData = $request->all();
-
             # обновляем данные категории
-            if ($oCategory->save($aData)) {
+            if ($oCategory->update($aData)) {
                 return redirect( "admin/$sNameRootCat" );
             } else {
                 return "Произошла ошибка при обновлении";
