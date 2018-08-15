@@ -139,7 +139,12 @@
     };
 })(jQuery);
 
-
 jQuery(function($) {
-    $('#url').slugify('#inputCatName'); // Type as you slug
+    $.slugify("Ätschi Bätschi"); // "aetschi-baetschi"
+    $('#link').slugify('#inputCatName'); // Type as you slug
+
+    $('#slug-target-1').slugify('#slug-source-1', {
+        separator: '_' // If you want to change separator from hypen (-) to underscore (_)
+    });
+
 });

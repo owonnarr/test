@@ -3,7 +3,7 @@
         <div class="modal-dialog" role="document">
             <div style="padding: 10px;" class="modal-content">
                 <div class="modal-header">
-                    <button id="close_modal" style="color: red;" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{--<button id="close_modal" style="color: red;" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
                     <h4 class="modal-title" id="myModalLabel">Создание новой категории</h4>
                 </div>
                 <div class="modal-body">
@@ -46,8 +46,8 @@
                                     </select>
                                 </div>
                             </div>
-                            <button data-loading-text="Loading..." id="res" type="submit" class="btn btn-success">ДОБАВИТЬ ДАННЫЕ</button>
-                            <button data-loading-text="Loading..." class="btn btn-danger">ОТМЕНА</button>
+                            <button id="res" type="submit" class="btn btn-success">ДОБАВИТЬ ДАННЫЕ</button>
+                            <button type="button" data-dismiss="modal" id="close_modal" class="btn btn-danger">ОТМЕНА</button>
                         </form>
                     </form>
                 </div>

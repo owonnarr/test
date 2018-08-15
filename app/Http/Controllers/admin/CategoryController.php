@@ -45,13 +45,15 @@ class CategoryController extends Controller
             $aRules =  [
                 'name' => 'min:4|max:20',
                 'description' => 'min:20|max:200',
-                'admin_id' => 'integer'
+                'admin_id' => 'integer',
+                'url' => 'string'
             ];
 
             # делаем валидацию данных
             $this->validate($request, $aRules);
             # получаем данные запроса
             $aData = $request->all();
+
             # работа с изображениями
 //            $file = $request->file('image');
 
@@ -71,7 +73,7 @@ class CategoryController extends Controller
 //                $aData['image'] = $fileName;
 //            }
             $result = Category::create($aData);
-
+            dd($result);
             if ($result) {
                 # получаем последний id
                 $id = $result->id;

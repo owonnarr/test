@@ -14,13 +14,7 @@ class Category extends Model
 
     public $timestamps = false;
 
-    protected $fillable = [
-        'id',
-        'name',
-        'image',
-        'description',
-        'admin_id',
-    ];
+    protected $fillable = ['id', 'name', 'description', 'url', 'admin_id'];
 
     /**
      * @return array|string

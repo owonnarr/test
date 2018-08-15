@@ -38,11 +38,13 @@ $(document).ready(function () {
         name = $('input[name = name]').val();
         descr = $('textarea[name = description]').val();
         id = $('#option_id_form:checked').data('id');
+        link = $('#link').val();
 
             dataForm = {
                 name: name,
                 description: descr,
-                admin_id: id
+                admin_id: id,
+                url: link
             };
 
             sendAjax(routes.categoriesAdd, dataForm, 'POST');
