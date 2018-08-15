@@ -39,7 +39,7 @@
                 @include('admin.partials.info-boxes')
 
             <div class="row">
-                @yield('breadcrumbs')
+                @include('admin.breadcrumbs.breadcrumbs')
                 @yield('content')
             </div>
         </section>
