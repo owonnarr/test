@@ -1,17 +1,19 @@
 @extends('layouts.admin-layouts')
 @section('content')
 <div class="row">
-    {{--{{dd($category)}}--}}
     <div class="col-md-6">
         <form id="editForm" class="form-horizontal col-sm-12" role="form" method="POST" action="{{ route('edit',  ['id' => $category->id]) }}">
             <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
             @if( $category )
-            <label style="text-align: left; padding: 0; margin-bottom: 5px;" class="col-sm-6 control-label">Название категории</label>
-            <div class="form-group">
-                <div class="col-sm-10">
-                    <input type="text" name="name" class="form-control" placeholder="Название категории" value="{{ $category->name }}">
+                <div class="form-group col-sm-10">
+                    <label class="label_form_add" for="inputCatName">Название категории</label>
+                    <input type="text" name="name" class="form-control" id="inputCatName" placeholder="имя категории" value="{{ $category->name }}" required>
+                    <input name="id" class="form-control" value="{{ $category->id }}" type="hidden">
                 </div>
-            </div>
+                <div class="form-group col-sm-10">
+                    <label class="label_form_add" for="inputCatName">Постоянная ссылка</label>
+                    <input type="text" name="url" class="form-control" value="{{ $category->url }}">
+                </div>
             <label style="text-align: left; padding: 0; margin-bottom: 5px;" class="col-sm-6 control-label">Описание категории</label>
             <div class="form-group">
                 <div class="col-sm-10">
@@ -42,6 +44,7 @@
             <div class="form-group">
                 <div class="col-sm-10">
                     <button type="submit" class="btn btn-success">ОБНОВИТЬ ДАННЫЕ</button>
+                    {{--<button type="button" class="btn btn-danger">ОТМЕНА</button>--}}
                 </div>
             </div>
                 @endif

@@ -73,7 +73,7 @@ class CategoryController extends Controller
 //                $aData['image'] = $fileName;
 //            }
             $result = Category::create($aData);
-            dd($result);
+
             if ($result) {
                 # получаем последний id
                 $id = $result->id;
@@ -132,7 +132,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
 
-    public function edit(Request $request, $id)
+    public function edit(Request $request, int $id)
     {
         if ($request->isMethod('GET')) {
 
@@ -151,8 +151,10 @@ class CategoryController extends Controller
 
         if ($request->isMethod('POST')) {
 
-            $oCategory = BaseHelper::getObjCurentAdminCategory($id);
-            $sNameRootCat = BaseHelper::getNameCatAdminFromRedirect($oCategory->admin_id);
+            $catId = $id;
+
+            $oCategory = Category::find($id);
+            $sNameRootCat = BaseHelper::getNameCatAdminFromRedirect($catId);
 
             # составляем правила для валидации
             $aRules =  [

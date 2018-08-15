@@ -21,26 +21,13 @@ class BaseHelper
     public static function getNameCatAdminFromRedirect(int $id)
     {
         $oRootCat = Admin::where('id', $id)->first();
-        $sRootCatName = $oRootCat->url;
 
-        if ($sRootCatName) {
-            return $sRootCatName;
-        } else {
-            return false;
+        if ($oRootCat !== null) {
+            $sRootCatName = $oRootCat->url;
         }
-    }
 
-    /**
-     * получаем объект текущей категории
-     * @param int $id
-     * @return bool
-     */
-    public static function getObjCurentAdminCategory(int $id)
-    {
-        $oCategory = Category::where('id', $id)->first();
-
-        if ($oCategory) {
-            return $oCategory;
+        if (isset($sRootCatName)) {
+            return $sRootCatName;
         } else {
             return false;
         }
