@@ -2,7 +2,14 @@
     padding: 0;
     margin: 0;
 }
-
+.main-sidebar {
+    height: 600px;
+    overflow: auto;
+}
+.sidebar {
+    height: auto;
+    /*overflow: hidden;*/
+}
 .ul_block_left {
     margin: 0;
     padding: 0;
@@ -16,17 +23,14 @@
     text-align: left;
     padding-bottom: 5px;
     padding-top: 5px;
-    padding-left: 50px;
-    padding-right: 20px;
+    padding-left: 30px;
+    padding-right: 10px;
 }
 
 .li_block_left:hover {
-    /*background-color: #e3e3e3;*/
     color: #1a2226;
     cursor: pointer;
-    /*border-bottom: #0089db 1px solid;*/
     background-color: #316b8c;
-    /*text-align: left;*/
     padding-bottom: 5px;
     padding-top: 5px;
 
@@ -35,7 +39,7 @@
 .a_block_left {
     color: #fff;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
 }
 
@@ -45,34 +49,69 @@ li > i {
 
 .fa-times {
     color: red;
-    font-size: 16px;
+    font-size: 14px;
 }
 
-#dropdown_child {
+.child_menu {
     margin: 0px;
     display: none;
 }
 
-#dropdown_child li {
-    color: #FFF;
-    border-botom: 1px #eee solid;
-    text-align: left;
-    font-size: 16px;
-    cursor: pointer;
+.open_menu {
+    display: list-item !important;
+    list-style: disc;
+    padding-left: 0px !important;
+
     /*padding-right: 20px;*/
 }
-
-#dropdown_child li:hover {
-    background-color: #6E6E6E;
+.open_menu li {
+    height: 30px;
+    border-bottom: 1px #2c4762 solid;
+    align-content: center;
+    text-align: left;
+    padding-left: 50px;
+    background-color: #dadada;
+    color: black;
+}
+.child_menu li:hover {
+    background-color: #94b9c3;
+}
+.child_title {
+    text-align: center;
+    vertical-align: sub;
+    /*padding-left: 20px;*/
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: underline !important;
 }
 
-/*.close::after {*/
-    /*content: '▶ ';*/
-/*}*/
+.fa_child {
+    vertical-align: sub;
+}
 
-/*.open::after {*/
-    /*content: '▼ ';*/
-/*}*/
+.a_child {
+    color: black !important;
+}
+
+.child_title:hover {
+    text-decoration: none !important;
+}
+.fa_child {
+    color: black !important;
+}
+
+.child_menu a {
+    padding-left: 5px;
+    text-align: left;
+}
+
+.close::after {
+    content: '▶ ';
+}
+
+.open::after {
+    content: '▼ ';
+}
 
 .label_form_add {
     font-size: 16px;

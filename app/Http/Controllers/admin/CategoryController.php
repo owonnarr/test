@@ -27,7 +27,7 @@ class CategoryController extends Controller
         $aCats = $this->getChildCats($category);
 
             return view('admin.category.list', [
-                'categories' => $aCats['childs'],
+                'cats' => $aCats['childs'],
                 'rootId' => $aCats['rootId'],
             ]);
     }

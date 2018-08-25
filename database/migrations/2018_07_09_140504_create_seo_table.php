@@ -19,6 +19,7 @@ class CreateSeoTable extends Migration
             $table->string('h1');
             $table->string('title');
             $table->string('description');
+            $table->text('body');
             $table->timestamps();
         });
     }

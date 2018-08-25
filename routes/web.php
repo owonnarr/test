@@ -25,10 +25,11 @@ Route::get('/admin', function () {
 })->name('home.admin');
 
 // admin-categories
-Route::get('admin/{categories}', 'admin\CategoryController@show')->name('admin.category');
-Route::match( ['get', 'post'], 'admin/category/add', 'admin\CategoryController@add')->name('admin.category.add');
-Route::post('admin/category/delete/{id}', 'admin\CategoryController@delete')->name('admin.categories.delete');
-Route::match(['get', 'post'], 'admin/category/{id}/edit', 'admin\CategoryController@edit')->name('edit');
+Route::match( ['get', 'post'], 'admin/characteristic', 'CharacteristicController@list')->name('characteristic');
+//Route::get('admin/', 'admin\CategoryController@show')->name('admin.category');
+//Route::match( ['get', 'post'], 'admin/category/add', 'admin\CategoryController@add')->name('admin.category.add');
+//Route::post('admin/category/delete/{id}', 'admin\CategoryController@delete')->name('admin.categories.delete');
+//Route::match(['get', 'post'], 'admin/category/{id}/edit', 'admin\CategoryController@edit')->name('edit');
 
 
 

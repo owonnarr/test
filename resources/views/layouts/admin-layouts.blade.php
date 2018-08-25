@@ -39,17 +39,19 @@
                 @include('admin.partials.info-boxes')
 
             <div class="row">
-                @include('admin.breadcrumbs.breadcrumbs')
+                {{--@include('admin.breadcrumbs.breadcrumbs')--}}
+
                 @yield('content')
             </div>
         </section>
     </div>
+    @include('admin/footer')
 
 </div>
 
 <script>
     var routes = {
-        categoriesAdd : "{{ route('admin.category.add') }}",
+        {{--categoriesAdd : "{{ route('admin.category.add') }}",--}}
         {{--getChildCats : "{{ route('child') }}",--}}
         {{--categoryUpdate : "{{ route('update') }}",--}}
     }

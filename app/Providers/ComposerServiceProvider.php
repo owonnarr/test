@@ -14,9 +14,9 @@ class ComposerServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        view()->composer('admin.sidebar', 'App\Http\ViewComposers\CategoryComposer');
-//        view()->composer('admin.sidebar', 'App\Http\ViewComposers\CategoryChildComposer');
-        view()->composer('admin.category.create-modal', 'App\Http\ViewComposers\CategoryComposer');
+        view()->composer('admin.sidebar', 'App\Http\ViewComposers\AdminMenuComposer');
+//        view()->composer('admin.breadcrumbs.breadcrumbs', 'App\Http\ViewComposers\BreadCrumbsComposer');
+//        view()->composer('admin.category.create-modal', 'App\Http\ViewComposers\CategoryComposer');
 //        view()->composer('admin.sidebar', 'App\Http\ViewComposers\CategoryComposer');
     }
 

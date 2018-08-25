@@ -11,9 +11,9 @@
     <div class="container">
         <div class="col-md-12">
             <div class="table-responsive">
-                    <?php if ( is_string($categories)) {
-                        echo $categories;
-                }?>
+<!--                    --><?php //if ( is_string($categories)) {
+//                        echo $categories;
+//                }?>
                 <table id="table_cats" class="table table-hover">
                     <thead>
                     <tr>
@@ -25,8 +25,8 @@
                     </tr>
                     </thead>
                     <tbody id="tb_table">
-                    @if( is_object($categories) )
-                        @foreach($categories as $category)
+                    @if( is_object($cats) )
+                        @foreach($cats as $category)
                             @if( $category->admin_id == $rootId)
                         <tr class="remove_tr">
                             <td>{{ $category->id }}</td>
